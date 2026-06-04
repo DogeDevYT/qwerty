@@ -10,6 +10,11 @@ There are four ways we test the Qwerty compiler:
       $ cd qwerty_pyrt/
       $ python -m unittest qwerty.tests -v
       ```
+    * To run individual unit tests, use the `-k` flag followed by the test name in the same directory as the unit tests Python module:
+    ```
+    $ python -m unittest qwerty.tests -k <test name>
+    ```
+    For example: `python -m unittest qwerty.tests -k test_poster`
  2. Integration tests (running Qwerty code):
     `qwerty_pyrt/python/qwerty/integration_tests.py`, invoked same as #1 above
  3. Unit tests for Rust code: `qwerty_ast/**/test_*.rs`
@@ -28,9 +33,6 @@ There are four ways we test the Qwerty compiler:
       are tested too. These analyses are invoked with `qwerty-opt` via a
       boilerplate pass like `TestFuncSpecAnalysisPass`, which prints their
       results to stdout so that you and [`FileCheck`][1] can see them.
-
-TESTING INDUVIDUAL UNIT TESTS:
-run `python -m unittest qwerty.tests -k <test name>` e.g. `python -m unittest qwerty.tests -k test_poster` in the same directory as the unit tests Python module. 
 
 You can run all the tests with `dev/run-tests.sh`. Make sure you that have LLVM
 binaries in your path (for [`FileCheck`][1]) and that you activated the virtual
