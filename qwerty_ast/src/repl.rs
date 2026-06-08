@@ -438,18 +438,19 @@ impl QLit {
             })
             .collect();
         let indices = state.sim.init_alloc(statevec, sparse.num_qbits);
-        let mut vals: Vec<Expr> = indices
+        let vals: Vec<_> = indices
             .into_iter()
             .map(|i| Expr::QubitRef(QubitRef { index: i }))
             .collect();
-        if vals.len() == 1 
-        {
-            Ok(vals.pop().unwrap())
-        } else if vals.is_empty() 
-        {
+        if vals.len() == 1 {
+            let val = vals
+                .into_iter()
+                .next()
+                .expect("vals was length 1 but is empty, how?");
+            Ok(val)
+        } else if vals.is_empty() {
             Ok(Expr::UnitLiteral(UnitLiteral { dbg: None }))
-        } else 
-        {
+        } else {
             Ok(Expr::Tensor(Tensor { vals, dbg: None }))
         }
     }
