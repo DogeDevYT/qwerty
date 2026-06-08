@@ -10,7 +10,7 @@ There are four ways we test the Qwerty compiler:
       $ cd qwerty_pyrt/
       $ python -m unittest qwerty.tests -v
       ```
-    * To run individual unit tests, use the `-k` flag followed by the test name in the same directory as the unit tests Python module:
+    * To run individual unit tests, use the `-k` flag followed by the test name:
       ```
       $ python -m unittest qwerty.tests -k <test name>
       ```
